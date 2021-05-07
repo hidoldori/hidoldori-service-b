@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hidoldori-service-b
+  labels:
+    app: hidoldori-service-b
+spec:
+  ports:
+    - port: 8082
+      targetPort: 8082
+  selector:
+    app: hidoldori-service-b
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hidoldori-service-b
+  labels:
+    app: hidoldori-service-b
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hidoldori-service-b
+  template:
+    metadata:
+      labels:
+        app: hidoldori-service-b
+    spec:
+      containers:
+        - name: hidoldori-service-b
+          image: gcr.io/hidoldori-lab-cicd-project/hidoldori-service-b:$SHORT_SHA
+          ports:
+            - containerPort: 8082
