@@ -30,6 +30,6 @@ spec:
     spec:
       containers:
         - name: hidoldori-service-b
-          image: gcr.io/burnished-mark-311301/hidoldori-service-b:$SHORT_SHA
+          image: gcr.io/burnished-mark-311301/hidoldori-service-b:0.1
           ports:
             - containerPort: 8082
